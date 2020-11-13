@@ -658,11 +658,11 @@ void Inkplate::display1b()
     uint8_t data;
     uint8_t dram;
     einkOn();
-    cleanFast(0, 15);
-    cleanFast(1, 15);
-    cleanFast(0, 15);
-    cleanFast(1, 15);
-      for (int k = 0; k < 5; k++)
+    cleanFast(0, 17);
+    cleanFast(1, 17);
+    cleanFast(0, 17);
+    cleanFast(1, 17);
+      for (int k = 0; k < 4; k++)
       {
         _pos = (E_INK_HEIGHT * E_INK_WIDTH / 8) - 1;
         vscan_start();
@@ -732,10 +732,10 @@ void Inkplate::display1b()
 void IRAM_ATTR Inkplate::display3b()
 {
     einkOn();
-    cleanFast(0, 15);
-    cleanFast(1, 15);
-    cleanFast(0, 15);
-    cleanFast(1, 15);
+    cleanFast(0, 17);
+    cleanFast(1, 17);
+    cleanFast(0, 17);
+    cleanFast(1, 17);
   
     for (int k = 0; k < 8; k++)
     {
@@ -834,10 +834,9 @@ int Inkplate::drawGrayscaleBitmap24(SdFile *f, struct bitmapHeader bmpHeader, in
       //px = pow(px, 1.5);
       //display.drawPixel(i + x, h - j + y, (uint8_t)(px*7));
 
-      //So then, we are convertng it to grayscale using good old average and gamma correction (from LUT). With this metod, it is still slow (full size image takes 4 seconds), but much beter than prev mentioned method.
+      //So then, we are convertng it to grayscale. With this metod, it is still slow (full size image takes 4 seconds), but much beter than prev mentioned method.
       uint8_t px = (f->read() * 2126 / 10000) + (f->read() * 7152 / 10000) + (f->read() * 722 / 10000);
 	  drawPixel(i + x, h - j + y, px>>5);
-	  //drawPixel(i + x, h - j + y, px/32);
     }
     if (padding) {
       for (int p = 0; p < padding; p++) {
