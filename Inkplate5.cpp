@@ -979,9 +979,9 @@ void Inkplate::setIntOutputInternal(uint8_t _addr, uint8_t* _r, uint8_t intPort,
     mirroring &= 1;
     openDrain &= 1;
     polarity &= 1;
-    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 6)) | (1 << mirroring);
-    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 6)) | (1 << openDrain);
-    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 6)) | (1 << polarity);
+    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 6)) | (mirroring << 6);
+    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 2)) | (openDrain << 2);
+    _r[MCP23017_IOCONA + intPort] = (_r[MCP23017_IOCONA + intPort] & ~(1 << 1)) | (polarity << 1);
     updateRegister(_addr, MCP23017_IOCONA + intPort, _r[MCP23017_IOCONA + intPort]);
 }
 
