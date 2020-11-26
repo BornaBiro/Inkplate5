@@ -185,7 +185,12 @@ void Inkplate::display()
 void Inkplate::partialUpdate()
 {
     if (_displayMode == 1) return;
-    if (_blockPartial == 1) display1b();
+    if (_blockPartial == 1)
+    {
+        display1b();
+        return;
+    }
+    
     uint32_t _pos = (E_INK_WIDTH * E_INK_HEIGHT / 8) - 1;
     uint8_t data;
     uint8_t diffw, diffb;
